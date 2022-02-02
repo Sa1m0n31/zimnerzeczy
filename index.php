@@ -75,8 +75,9 @@ get_header(); ?>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/sklep">
+                                    <a href="/sklep" class="menu__shop">
                                         Sklep morsa
+                                        <img class="cartIcon invert" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/cart.svg'; ?>" alt="koszyk" />
                                     </a>
                                 </li>
                             </ul>
@@ -87,14 +88,11 @@ get_header(); ?>
                     </header>
                     <main class="hero__main">
                         <h2 class="hero__main__header">
-                            BRR!
+                            Dom miłośników zimna
                         </h2>
                         <h3 class="hero__main__subheader">
-                            "W mrozie jest coś takiego, że wydobywa z ludzi ciepło"
+                            Praktyczne wskazówki, dzięki którym zahartujesz swojego ducha i ciało
                         </h3>
-                        <h4 class="hero__main__thirdHeader">
-                            J. Maarten Trost
-                        </h4>
                         <a class="hero__btn" href="#blog">
                             Idź dalej
                         </a>
@@ -104,10 +102,13 @@ get_header(); ?>
                     <section class="blog__inner w">
 
                         <header class="blog__categories d-desktop flex">
+                            <button class="blog__categories__btn" onclick="filterCategories()" id="all">
+                                Wszystkie kategorie
+                            </button>
                             <?php
                             foreach ( get_categories() as $category ) :
                                 ?>
-                                <button class="blog__categories__btn">
+                                <button class="blog__categories__btn" id="<?php echo $category->name; ?>">
                                     <?php
                                     echo $category->name;
                                     ?>
@@ -124,36 +125,74 @@ get_header(); ?>
                             $args = array(
                                 'post_type' => 'post'
                             );
+                            $i = 0;
 
                             $post_query = new WP_Query($args);
 
                             if($post_query->have_posts() ) {
                                 while($post_query->have_posts() ) {
                                     $post_query->the_post();
-                                    ?>
-                                    <a class="blog__articles__item" href="<?php the_permalink() ?>">
-                        <span class="blog__articles__item__category">
-                            Zimno
-                        </span>
-                                        <figure class="blog__articles__imgWrapper">
-                                            <?php
-                                            echo get_the_post_thumbnail();
-                                            ?>
-                                        </figure>
-                                        <h4 class="blog__articles__item__title">
-                                            <?php echo the_title(); ?>
-                                        </h4>
-                                        <p class="blog__articles__item__excerpt">
-                                            <?php
-                                            echo the_excerpt();
-                                            ?>
-                                        </p>
-                                        <button class="blog__articles__item__readMoreBtn">
-                                            Czytaj dalej
-                                            <img class="icon" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/long-arrow.svg'; ?>" alt="wiecej" />
-                                        </button>
-                                    </a>
-                                    <?php
+                                    $post_id = get_the_ID();
+                                    $category_object = get_the_category($post_id);
+                                    $category_name = $category_object[0]->name;
+                                    $i++;
+                                    if($i <= 9) {
+                                        ?>
+                                        <a class="blog__articles__item" href="<?php the_permalink() ?>">
+                            <span class="blog__articles__item__category" id="<?php
+                            foreach($category_object as $cat) {
+                                echo $cat->name . ';';
+                            }
+                            ?>">
+                                <?php echo $category_name; ?>
+                            </span>
+                                            <figure class="blog__articles__imgWrapper">
+                                                <?php
+                                                echo get_the_post_thumbnail();
+                                                ?>
+                                            </figure>
+                                            <h4 class="blog__articles__item__title">
+                                                <?php echo the_title(); ?>
+                                            </h4>
+                                            <p class="blog__articles__item__excerpt">
+                                                <?php
+                                                echo the_excerpt();
+                                                ?>
+                                            </p>
+                                            <button class="blog__articles__item__readMoreBtn">
+                                                Czytaj dalej
+                                                <img class="icon" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/long-arrow.svg'; ?>" alt="wiecej" />
+                                            </button>
+                                        </a>
+                                        <?php
+                                    }
+                                    else {
+                                        ?>
+                                        <a class="blog__articles__item hidden" href="<?php the_permalink() ?>">
+                            <span class="blog__articles__item__category">
+                                <?php echo $category_name; ?>
+                            </span>
+                                            <figure class="blog__articles__imgWrapper">
+                                                <?php
+                                                echo get_the_post_thumbnail();
+                                                ?>
+                                            </figure>
+                                            <h4 class="blog__articles__item__title">
+                                                <?php echo the_title(); ?>
+                                            </h4>
+                                            <p class="blog__articles__item__excerpt">
+                                                <?php
+                                                echo the_excerpt();
+                                                ?>
+                                            </p>
+                                            <button class="blog__articles__item__readMoreBtn">
+                                                Czytaj dalej
+                                                <img class="icon" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/long-arrow.svg'; ?>" alt="wiecej" />
+                                            </button>
+                                        </a>
+
+                                        <?php
+                                    }
                                 }
                             }
                             ?>
@@ -166,13 +205,18 @@ get_header(); ?>
                         <section class="blog__bottom flex">
                             <article class="blog__bottom__article">
                                 <h2 class="blog__bottom__article__header">
-                                    Wiemy dużo o morsowaniu!
+                                    O nas
                                 </h2>
                                 <p class="blog__bottom__article__text">
-                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                                    Dwóch przyjaciół. Dwie historie. Dwa podejścia do zimna.
+                                    Połączyliśmy swoje siły, by badać i opisywać wpływ zimna na ciało i umysł człowieka.
+                                    Stworzyliśmy tego bloga, by dzielić się wiedzą, która ma realny wpływ na pozytywne zmiany, które zachodzą w nas samych i społeczności, którą mamy wokół siebie.
+                                    Jeden z nas to specjalista do spraw suplementacji i chemii mózgu. Dietetyk kliniczny, absolwent Functional Medical University FMU. Popularyzator nauki, od lat zajmuje się hobbistycznie endokrynologią i zastosowaniem peptydów w medycynie regeneracyjnej.
+                                    Drugi to przedsiębiorca, wieloletni miłośnik zimna i pasjonat zdobywania górskich szczytów w samych szortach. Coach, organizator warsztatów, popularyzator dobrych nawyków w morsowaniu.
+                                    Zapraszamy Cię we wspólną podróż po wiedzę i rozwój ducha.
                                 </p>
-                                <a class="blog__bottom__article__btn" href="/o-nas">
-                                    Dowiedz się więcej o nas
+                                <a class="blog__bottom__article__btn" href="/blog">
+                                    Przejdź do naszego bloga
                                     <img class="icon" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/long-arrow.svg'; ?>" alt="wiecej" />
                                 </a>
                             </article>
@@ -188,7 +232,7 @@ get_header(); ?>
                         Wpadnij na naszego Instagrama
                     </h3>
                     <h4 class="instagram__subheader">
-                        @nazwa
+                        @zimnerzeczy
                     </h4>
                     <?php
                         echo do_shortcode('[instagram-feed]');

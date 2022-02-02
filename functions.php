@@ -122,7 +122,7 @@ function jurkiewicz_header() {
                 </li>
                 <li>
                     <a href="/sklep">
-                        Sklep
+                        Sklep morsa
                     </a>
                 </li>
             </ul>
@@ -152,8 +152,9 @@ function jurkiewicz_header() {
                     </a>
                 </li>
                 <li>
-                    <a href="/sklep">
+                    <a href="/sklep" class="menu__shop">
                         Sklep morsa
+                        <img class="cartIcon" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/cart.svg'; ?>" alt="koszyk" />
                     </a>
                 </li>
             </ul>
@@ -315,13 +316,18 @@ function jurkiewicz_homepage() {
                 <section class="blog__bottom flex">
                     <article class="blog__bottom__article">
                         <h2 class="blog__bottom__article__header">
-                            Wiemy dużo o morsowaniu!
+                            O nas
                         </h2>
                         <p class="blog__bottom__article__text">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                            Dwóch przyjaciół. Dwie historie. Dwa podejścia do zimna.
+                            Połączyliśmy swoje siły, by badać i opisywać wpływ zimna na ciało i umysł człowieka.
+                            Stworzyliśmy tego bloga, by dzielić się wiedzą, która ma realny wpływ na pozytywne zmiany, które zachodzą w nas samych i społeczności, którą mamy wokół siebie.
+                            Jeden z nas to specjalista do spraw suplementacji i chemii mózgu. Dietetyk kliniczny, absolwent Functional Medical University FMU. Popularyzator nauki, od lat zajmuje się hobbistycznie endokrynologią i zastosowaniem peptydów w medycynie regeneracyjnej.
+                            Drugi to przedsiębiorca, wieloletni miłośnik zimna i pasjonat zdobywania górskich szczytów w samych szortach. Coach, organizator warsztatów, popularyzator dobrych nawyków w morsowaniu.
+                            Zapraszamy Cię we wspólną podróż po wiedzę i rozwój ducha.
                         </p>
                         <a class="blog__bottom__article__btn">
-                            Dowiedz się więcej o nas
+                            Przejdź do naszego bloga
                             <img class="icon" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/long-arrow.svg'; ?>" alt="wiecej" />
                         </a>
                     </article>
@@ -342,7 +348,7 @@ function jurkiewicz_footer() {
     <footer class="footer">
         <section class="footer__main w flex">
             <section class="footer__main__firstCol">
-                <a class="footer__main__firstCol__logo" href="">
+                <a class="footer__main__firstCol__logo" href="<?php echo home_url(); ?>">
                     <img class="img" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/logo.png'; ?>" alt="zimne-rzeczy" />
                 </a>
                 <h4 class="footer__main__header">
@@ -355,135 +361,70 @@ function jurkiewicz_footer() {
                         Zimny blog
                     </h4>
                     <ul>
+                        <?php
+                        foreach ( get_categories() as $category ) :
+                            ?>
+                            <li>
+                                <a href="<?php echo home_url() . '/blog?kategoria=' . $category->slug; ?>">
+                                    <?php
+                                        echo $category->name;
+                                    ?>
+                                </a>
+                            </li>
+                        <?php
+                        endforeach;
+                        ?>
+                    </ul>
+                </section>
+                <section class="footer__main__col">
+                    <h4 class="footer__main__header">
+                        Sklep
+                    </h4>
+                    <ul>
                         <li>
-                            <a href="">
-                                Zimno
+                            <a href="/sklep">
+                                Produkty
                             </a>
                         </li>
                         <li>
-                            <a href="">
-                                Chemia mózgu
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                Hormony
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                Suplementy
+                            <a href="/koszyk">
+                                Twój koszyk
                             </a>
                         </li>
                     </ul>
                 </section>
                 <section class="footer__main__col">
                     <h4 class="footer__main__header">
-                        Zimny blog
+                        Informacje
                     </h4>
                     <ul>
                         <li>
-                            <a href="">
-                                Zimno
+                            <a href="/regulamin">
+                                Regulamin
                             </a>
                         </li>
                         <li>
-                            <a href="">
-                                Chemia mózgu
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                Hormony
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                Suplementy
+                            <a href="/polityka-prywatnosci">
+                                Polityka prywatności
                             </a>
                         </li>
                     </ul>
                 </section>
-                <section class="footer__main__col">
+                <section class="footer__main__col footer__main__col--contact">
                     <h4 class="footer__main__header">
-                        Zimny blog
+                        Obsługa Klienta:
                     </h4>
-                    <ul>
-                        <li>
-                            <a href="">
-                                Zimno
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                Chemia mózgu
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                Hormony
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                Suplementy
-                            </a>
-                        </li>
-                    </ul>
-                </section>
-                <section class="footer__main__col">
+                    <a>
+                        <img class="icon" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/phone.svg'; ?>" alt="telefon" />
+                        100 200 300
+                    </a>
                     <h4 class="footer__main__header">
-                        Zimny blog
+                        Mail kontaktowy:
                     </h4>
-                    <ul>
-                        <li>
-                            <a href="">
-                                Zimno
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                Chemia mózgu
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                Hormony
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                Suplementy
-                            </a>
-                        </li>
-                    </ul>
-                </section>
-                <section class="footer__main__col">
-                    <h4 class="footer__main__header">
-                        Zimny blog
-                    </h4>
-                    <ul>
-                        <li>
-                            <a href="">
-                                Zimno
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                Chemia mózgu
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                Hormony
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                Suplementy
-                            </a>
-                        </li>
-                    </ul>
+                    <a>
+                        <img class="icon" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/mail.svg'; ?>" alt="telefon" />
+                        kontakt@zimnerzeczy.pl
+                    </a>
                 </section>
             </section>
         </section>
@@ -515,7 +456,7 @@ function zimnerzeczy_single_post() {
             <main class="single flex w">
                 <article class="single__article">
                     <figure class="single__imgWrapper">
-                        <img class="img" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/big-image.png'; ?>" alt="title" />
+                        <img class="img" src="<?php echo get_field('zdjecie_wpisu'); ?>" alt="title" />
                     </figure>
                     <h2 class="single__title">
                         <?php echo the_title(); ?>
@@ -542,7 +483,7 @@ function zimnerzeczy_single_post() {
                         <?php
                         $args = array(
                             'post_type' => 'post',
-                            'per_page' => 4
+                            'posts_per_page' => 4
                         );
 
                         $post_query = new WP_Query($args);
@@ -576,6 +517,58 @@ function zimnerzeczy_single_post() {
                     </div>
                 </aside>
             </main>
+    <section class="single__blogSection flex">
+        <h3 class="single__blogSection__header">
+            Przeczytaj również
+        </h3>
+        <main class="blog__articles">
+            <?php
+            $args = array(
+                'post_type' => 'post',
+                'posts_per_page' => 3
+            );
+
+            $post_query = new WP_Query($args);
+
+            if($post_query->have_posts() ) {
+                while($post_query->have_posts() ) {
+                    $post_query->the_post();
+                    $post_id = get_the_ID();
+                    $category_object = get_the_category($post_id);
+                    $category_name = $category_object[0]->name;
+                    ?>
+                    <a class="blog__articles__item" href="<?php the_permalink() ?>">
+                        <span class="blog__articles__item__category" id="<?php
+                        foreach($category_object as $cat) {
+                            echo $cat->name . ';';
+                        }
+                        ?>">
+                            <?php echo $category_name; ?>
+                        </span>
+                        <figure class="blog__articles__imgWrapper">
+                            <?php
+                            echo get_the_post_thumbnail();
+                            ?>
+                        </figure>
+                        <h4 class="blog__articles__item__title">
+                            <?php echo the_title(); ?>
+                        </h4>
+                        <p class="blog__articles__item__excerpt">
+                            <?php
+                            echo the_excerpt();
+                            ?>
+                        </p>
+                        <button class="blog__articles__item__readMoreBtn">
+                            Czytaj dalej
+                            <img class="icon" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/long-arrow.svg'; ?>" alt="wiecej" />
+                        </button>
+                    </a>
+                    <?php
+                }
+            }
+            ?>
+        </main>
+    </section>
 <?php
 }
 
@@ -583,12 +576,64 @@ add_action('storefront_single_post', 'zimnerzeczy_single_post', 14);
 
 function zimnerzeczy_after_single_product_summary() {
     ?>
+        <section class="single__blogSection flex">
+            <h3 class="single__blogSection__header">
+                Zajrzyj na Zimnego Bloga!
+            </h3>
+            <main class="blog__articles">
+                <?php
+                $args = array(
+                    'post_type' => 'post',
+                    'posts_per_page' => 3
+                );
+
+                $post_query = new WP_Query($args);
+
+                if($post_query->have_posts() ) {
+                    while($post_query->have_posts() ) {
+                        $post_query->the_post();
+                        $post_id = get_the_ID();
+                        $category_object = get_the_category($post_id);
+                        $category_name = $category_object[0]->name;
+                        ?>
+                        <a class="blog__articles__item" href="<?php the_permalink() ?>">
+                        <span class="blog__articles__item__category" id="<?php
+                        foreach($category_object as $cat) {
+                            echo $cat->name . ';';
+                        }
+                        ?>">
+                            <?php echo $category_name; ?>
+                        </span>
+                            <figure class="blog__articles__imgWrapper">
+                                <?php
+                                echo get_the_post_thumbnail();
+                                ?>
+                            </figure>
+                            <h4 class="blog__articles__item__title">
+                                <?php echo the_title(); ?>
+                            </h4>
+                            <p class="blog__articles__item__excerpt">
+                                <?php
+                                echo the_excerpt();
+                                ?>
+                            </p>
+                            <button class="blog__articles__item__readMoreBtn">
+                                Czytaj dalej
+                                <img class="icon" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/long-arrow.svg'; ?>" alt="wiecej" />
+                            </button>
+                        </a>
+                        <?php
+                    }
+                }
+                ?>
+            </main>
+        </section>
     <section class="instagram">
         <h3 class="instagram__header">
             Wpadnij na naszego Instagrama
         </h3>
         <h4 class="instagram__subheader">
-            @nazwa
+            @zimnerzeczy
         </h4>
         <?php
         echo do_shortcode('[instagram-feed]');

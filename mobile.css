@@ -73,6 +73,7 @@
         text-align: center;
         margin: 20px auto;
         font-size: 24px;
+        font-weight: 700;
     }
 
     .blog__bottom {
@@ -142,6 +143,10 @@
         width: 30px;
         position: relative;
         z-index: 3;
+    }
+
+    .blog__bottom__article__btn {
+        font-size: 12px !important;
     }
 
     .blog__articles {
@@ -254,6 +259,49 @@
     .blog__bottom__article__header {
         text-align: center;
         font-size: 18px;
+    }
+
+    .footer__main__cols {
+        align-items: center;
+    }
+
+    .product_title {
+        font-size: 24px !important;
+    }
+
+    .single .price {
+        font-size: 21px !important;
+    }
+
+    .woocommerce-product-details__short-description {
+        font-size: 14px !important;
+    }
+
+    .single__blogSection__header {
+        font-size: 21px !important;
+        margin-bottom: -20px !important;
+    }
+
+    .blog__articles__item__category {
+        font-size: 12px;
+    }
+
+    .blog__articles__item p {
+        font-size: 13px !important;
+    }
+
+    .single button[name=add-to-cart] {
+        font-size: 15px !important;
+        height: 40px !important;
+        width: 200px !important;
+    }
+
+    .single .quantity > input {
+        height: 40px !important;
+    }
+
+    .blog__inner {
+        margin-top: 0;
     }
 }
 
