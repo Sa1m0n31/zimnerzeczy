@@ -1,0 +1,6 @@
+<svg id="Group_5" data-name="Group 5" xmlns="http://www.w3.org/2000/svg" width="121" height="23" viewBox="0 0 121 23">
+  <text id="Sklep_morsa" data-name="Sklep morsa" transform="translate(0 17)" fill="#fff" font-size="16" font-family="Poppins-Regular, Poppins"><tspan x="0" y="0">Sklep morsa</tspan></text>
+  <g id="shop-bag" transform="translate(107.633 3.048)">
+    <path id="Path_2" data-name="Path 2" d="M65.045,15.2l-.9-11.086a.59.59,0,0,0-.588-.542H61.8V3.433a3.433,3.433,0,0,0-6.867,0v.142h-1.76a.59.59,0,0,0-.588.542l-.9,11.086a1.572,1.572,0,0,0,1.567,1.7H63.477a1.572,1.572,0,0,0,1.567-1.7ZM56.112,3.433a2.254,2.254,0,0,1,4.508,0v.142H56.112ZM63.766,15.6a.389.389,0,0,1-.289.127H53.255a.393.393,0,0,1-.392-.425l.853-10.544h1.216V7.678a.59.59,0,0,0,1.179,0V4.755H60.62V7.678a.59.59,0,1,0,1.179,0V4.755h1.216L63.869,15.3A.389.389,0,0,1,63.766,15.6Z" transform="translate(-51.683 0)" fill="#fff"/>
+  </g>
+</svg>
