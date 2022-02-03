@@ -67,10 +67,12 @@ Array.from(document.querySelectorAll('.blog__categories__btn')).forEach((item) =
     item.addEventListener('click', (e) => {
         const id = e.target.attributes.id.nodeValue.trim();
 
-        allCategoriesButtons.forEach((item) => {
-            item.style.color = '#000';
+        allCategoriesButtons.forEach((item, index, arr) => {
+            if(index !== arr.length-1 && index !== 0) {
+                item.style.fontWeight = '400';
+            }
         });
-        e.target.style.color = '#6FA5D1';
+        e.target.style.fontWeight = '700';
 
         if(id !== 'all') filterCategories(id);
         else filterCategories(null, true);
@@ -98,10 +100,12 @@ if(catParam) {
     const buttonToColor = allCategoriesButtons.findIndex((item) => {
         return convertToURL(item.getAttribute('id').split(';')[0]) === catParam;
     });
-    allCategoriesButtons.forEach((item) => {
-        item.style.color = '#000';
+    allCategoriesButtons.forEach((item, index, arr) => {
+        if(index !== arr.length-1 && index !== 0) {
+            item.style.fontWeight = '400';
+        }
     });
-    if(buttonToColor !== -1) allCategoriesButtons[buttonToColor].style.color = '#6FA5D1';
+    if(buttonToColor !== -1) allCategoriesButtons[buttonToColor].style.fontWeight = '700';
 
     filterCategories(catParam);
 }

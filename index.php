@@ -103,7 +103,7 @@ get_header(); ?>
 
                         <header class="blog__categories d-desktop flex">
                             <button class="blog__categories__btn" onclick="filterCategories()" id="all">
-                                Wszystkie kategorie
+                                Wszystkie wpisy
                             </button>
                             <?php
                             foreach ( get_categories() as $category ) :

@@ -76,6 +76,7 @@ function jurkiewicz_scripts() {
     wp_enqueue_style( 'css-mobile', get_template_directory_uri() . '/mobile.css', array(), 1.0 );
 
     wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/js/main.js', array('aos-js'), 1.0, true );
+    wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;900&display=swap', false );
 
     /* AOS */
     wp_enqueue_script('aos-js', 'https://unpkg.com/aos@2.3.1/dist/aos.js');
@@ -332,7 +333,7 @@ function jurkiewicz_homepage() {
                         </a>
                     </article>
                     <figure class="blog__bottom__imgWrapper">
-                        <img class="img" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/img2.png'; ?>" alt="blog" />
+                        <img class="img" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/img-onas.png'; ?>" alt="blog" />
                     </figure>
                 </section>
             </section>
@@ -453,14 +454,14 @@ add_action('storefront_footer', 'jurkiewicz_footer', 14);
 
 function zimnerzeczy_single_post() {
     ?>
+            <figure class="single__imgWrapper">
+                <img class="img" src="<?php echo get_field('zdjecie_wpisu'); ?>" alt="title" />
+                <h2 class="single__title">
+                    <?php echo the_title(); ?>
+                </h2>
+            </figure>
             <main class="single flex w">
                 <article class="single__article">
-                    <figure class="single__imgWrapper">
-                        <img class="img" src="<?php echo get_field('zdjecie_wpisu'); ?>" alt="title" />
-                    </figure>
-                    <h2 class="single__title">
-                        <?php echo the_title(); ?>
-                    </h2>
                     <main class="single__content">
                         <?php
                             the_content();
@@ -517,7 +518,7 @@ function zimnerzeczy_single_post() {
                     </div>
                 </aside>
             </main>
-    <section class="single__blogSection flex">
+    <section class="single__blogSection w flex">
         <h3 class="single__blogSection__header">
             Przeczytaj również
         </h3>

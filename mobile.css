@@ -3,12 +3,13 @@
         position: relative;
         top: unset;
         left: unset;
-        margin-left: 20px;
+        margin: 20px auto;
         width: 48%;
     }
 
     .blog__bottom__article {
         width: 50%;
+        transform: none;
     }
 
     .blog__bottom__article__text {
@@ -302,6 +303,19 @@
 
     .blog__inner {
         margin-top: 0;
+    }
+
+    .hero__main__subheader {
+        margin: 20px auto 35px;
+        font-size: 14px;
+    }
+
+    .hero__main__header {
+        font-size: 27px;
+    }
+
+    .blog__bottom {
+        margin-bottom: 20px;
     }
 }
 

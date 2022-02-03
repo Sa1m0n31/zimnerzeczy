@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b58ad443-6dd9-46c3-955d-1cf9bf968e32" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/img/mail.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/phone.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/img-onas.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/cart.svg" beforeDir="false" afterPath="$PROJECT_DIR$/img/cart.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mobile.css" beforeDir="false" afterPath="$PROJECT_DIR$/mobile.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/page-blog.php" beforeDir="false" afterPath="$PROJECT_DIR$/page-blog.php" afterDir="false" />
@@ -44,7 +42,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../bolingier" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/img" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -72,6 +70,8 @@
       <workItem from="1643738711912" duration="8207000" />
       <workItem from="1643747296274" duration="10323000" />
       <workItem from="1643802155433" duration="14211000" />
+      <workItem from="1643844294185" duration="13000" />
+      <workItem from="1643914380638" duration="7511000" />
     </task>
     <servers />
   </component>
@@ -88,5 +88,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="-1180" y="275" key="FileChooserDialogImpl" timestamp="1643844305554">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1180" y="275" key="FileChooserDialogImpl/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1643844305553" />
   </component>
 </project>

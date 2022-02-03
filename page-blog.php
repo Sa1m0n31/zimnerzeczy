@@ -7,7 +7,7 @@ get_header();
         <section class="blog__inner w">
             <header class="blog__categories d-desktop flex">
                 <button class="blog__categories__btn" onclick="filterCategories()" id="all">
-                    Wszystkie kategorie
+                    Wszystkie wpisy
                 </button>
                 <?php
                 foreach ( get_categories() as $category ) :
@@ -24,9 +24,9 @@ get_header();
             <h2 class="blog__mobileHeader d-mobile">
                 Ostatnie wpisy
             </h2>
-            <h3 class="notFound">
-                Nic nie znaleziono
-            </h3>
+<!--            <h3 class="notFound">-->
+<!--                Nic nie znaleziono-->
+<!--            </h3>-->
             <main class="blog__articles blog__articles--blog">
                 <?php
                 $args = array(
