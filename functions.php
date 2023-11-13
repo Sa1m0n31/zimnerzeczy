@@ -73,9 +73,9 @@ if ( version_compare( get_bloginfo( 'version' ), '4.7.3', '>=' ) && ( is_admin()
 
 /* Enqueue scripts */
 function jurkiewicz_scripts() {
-    wp_enqueue_style( 'css-mobile', get_template_directory_uri() . '/mobile.css', array(), 1.0 );
+    wp_enqueue_style( 'css-mobile', get_template_directory_uri() . '/mobile.css?n=8', array(), 1.0 );
 
-    wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/js/main.js', array('aos-js'), 1.0, true );
+    wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/js/main.js?n=4', array('aos-js'), 1.0, true );
     wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;900&display=swap', false );
 
     /* AOS */
@@ -103,7 +103,7 @@ function jurkiewicz_header() {
                 <img class="img" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/close.svg'; ?>" alt="zamknij" />
             </button>
 
-            <img class="mobileMenu__logo" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/logo-2.png'; ?>" alt="logo" />
+            <img class="mobileMenu__logo" src="<?php echo get_field('logo_na_podstronach', 146); ?>" alt="logo" />
 
             <ul>
                 <li>
@@ -122,6 +122,11 @@ function jurkiewicz_header() {
                     </a>
                 </li>
                 <li>
+                    <a href="/moje-konto">
+                        Panel klienta
+                    </a>
+                </li>
+                <li>
                     <a href="/sklep">
                         Sklep morsa
                     </a>
@@ -130,7 +135,7 @@ function jurkiewicz_header() {
         </menu>
 
         <a class="header__logoWrapper" href="<?php echo home_url(); ?>">
-            <img class="img" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/logo-2.png'; ?>" alt="logo" />
+            <img class="img" src="https://zimnerzeczy.pl/wp-content/uploads/2022/01/cropped-zimne-final-bez-bold-1.png" alt="logo" />
         </a>
         <button class="hero__hamburgerMenu d-mobile" onclick="openMenu()">
             <img class="img" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/menu.svg'; ?>" alt="menu" />
@@ -150,6 +155,11 @@ function jurkiewicz_header() {
                 <li>
                     <a href="/o-nas">
                         O nas
+                    </a>
+                </li>
+                <li>
+                    <a href="/moje-konto" class="menu__shop">
+                        Panel klienta
                     </a>
                 </li>
                 <li>
@@ -176,173 +186,6 @@ function remove_homepage()
 }
 add_action('wp_head', 'remove_homepage');
 
-function jurkiewicz_homepage() {
-    ?>
-    <div class="container">
-        <main class="hero">
-            <menu class="mobileMenu d-mobile">
-                <button class="closeMenu" onclick="closeMenu()">
-                    <img class="img" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/close.svg'; ?>" alt="zamknij" />
-                </button>
-
-                <img class="mobileMenu__logo" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/logo-2.png'; ?>" alt="logo" />
-
-                <ul>
-                    <li>
-                        <a href="<?php echo home_url(); ?>">
-                            Strona główna
-                        </a>
-                    </li>
-                    <li>
-                        <a href=".">
-                            O nas
-                        </a>
-                    </li>
-                    <li>
-                        <a href=".">
-                            Blog
-                        </a>
-                    </li>
-                    <li>
-                        <a href=".">
-                            Sklep
-                        </a>
-                    </li>
-                </ul>
-            </menu>
-
-            <img class="hero__background" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/zimnerzeczy-landing-page.png'; ?>" alt="zimne-rzeczy" />
-            <header class="hero__header flex w">
-                <a class="hero__logoWrapper" href="<?php echo home_url(); ?>">
-                    <img class="img" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/logo.png'; ?>" alt="logo" />
-                </a>
-                <button class="hero__hamburgerMenu d-mobile" onclick="openMenu()">
-                    <img class="img" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/menu.svg'; ?>" alt="menu" />
-                </button>
-                <menu class="hero__menu d-desktop flex">
-                    <ul class="hero__menu__list flex">
-                        <li>
-                            <a href="<?php echo home_url(); ?>">
-                                Strona główna
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                O nas
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                Sklep morsa
-                            </a>
-                        </li>
-                    </ul>
-                    <button class="hero__cart">
-                        Twój koszyk (0,00 zł)
-                    </button>
-                </menu>
-            </header>
-            <main class="hero__main">
-                <h2 class="hero__main__header">
-                    BRR!
-                </h2>
-                <h3 class="hero__main__subheader">
-                    "W mrozie jest coś takiego, że wydobywa z ludzi ciepło"
-                </h3>
-                <h4 class="hero__main__thirdHeader">
-                    J. Maarten Trost
-                </h4>
-                <a class="hero__btn" href="#blog">
-                    Idź dalej
-                </a>
-            </main>
-        </main>
-        <section class="blog" id="blog">
-            <section class="blog__inner w">
-                <header class="blog__categories d-desktop flex">
-                    <button class="blog__categories__btn">
-                        Zimno
-                    </button>
-                    <button class="blog__categories__btn">
-                        Zdrowie
-                    </button>
-                    <button class="blog__categories__btn">
-                        Chemia mózgu
-                    </button>
-                    <button class="blog__categories__btn">
-                        Hormony
-                    </button>
-                    <button class="blog__categories__btn">
-                        Suplementacja
-                    </button>
-                    <button class="blog__categories__btn">
-                        Mindset
-                    </button>
-                    <button class="blog__categories__btn">
-                        Zimne rozmowy
-                    </button>
-                </header>
-                <h2 class="blog__mobileHeader d-mobile">
-                    Ostatnie wpisy
-                </h2>
-                <main class="blog__articles">
-                    <a class="blog__articles__item" href="">
-                        <span class="blog__articles__item__category">
-                            Zimno
-                        </span>
-                        <figure class="blog__articles__imgWrapper">
-                            <img class="img" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/img1.png'; ?>" alt="blog" />
-                        </figure>
-                        <h4 class="blog__articles__item__title">
-                            Pierwsze morsowanie - o czym należy pamiętać?
-                        </h4>
-                        <p class="blog__articles__item__excerpt">
-                            Chcesz zacząć morsować? To świetny wybór! W tym artykule dowiesz się, jak odpowiednio przygotować się do Twojego pierwszego razu.
-                        </p>
-                        <button class="blog__articles__item__readMoreBtn">
-                            Czytaj dalej
-                            <img class="icon" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/long-arrow.svg'; ?>" alt="wiecej" />
-                        </button>
-                    </a>
-                </main>
-                <a class="blog__btn" href="/blog">
-                    Zobacz wszystkie wpisy
-                    <img class="icon" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/long-arrow.svg'; ?>" alt="blog" />
-                </a>
-                <section class="blog__bottom flex">
-                    <article class="blog__bottom__article">
-                        <h2 class="blog__bottom__article__header">
-                            O nas
-                        </h2>
-                        <p class="blog__bottom__article__text">
-                            Dwóch przyjaciół. Dwie historie. Dwa podejścia do zimna.
-                            Połączyliśmy swoje siły, by badać i opisywać wpływ zimna na ciało i umysł człowieka.
-                            Stworzyliśmy tego bloga, by dzielić się wiedzą, która ma realny wpływ na pozytywne zmiany, które zachodzą w nas samych i społeczności, którą mamy wokół siebie.
-                            Jeden z nas to specjalista do spraw suplementacji i chemii mózgu. Dietetyk kliniczny, absolwent Functional Medical University FMU. Popularyzator nauki, od lat zajmuje się hobbistycznie endokrynologią i zastosowaniem peptydów w medycynie regeneracyjnej.
-                            Drugi to przedsiębiorca, wieloletni miłośnik zimna i pasjonat zdobywania górskich szczytów w samych szortach. Coach, organizator warsztatów, popularyzator dobrych nawyków w morsowaniu.
-                            Zapraszamy Cię we wspólną podróż po wiedzę i rozwój ducha.
-                        </p>
-                        <a class="blog__bottom__article__btn">
-                            Przejdź do naszego bloga
-                            <img class="icon" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/long-arrow.svg'; ?>" alt="wiecej" />
-                        </a>
-                    </article>
-                    <figure class="blog__bottom__imgWrapper">
-                        <img class="img" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/img-onas.png'; ?>" alt="blog" />
-                    </figure>
-                </section>
-            </section>
-        </section>
-    </div>
-    <?php
-}
-
-add_action('storefront_homepage', 'jurkiewicz_homepage', 10);
 
 function jurkiewicz_footer() {
     ?>
@@ -350,7 +193,7 @@ function jurkiewicz_footer() {
         <section class="footer__main w flex">
             <section class="footer__main__firstCol">
                 <a class="footer__main__firstCol__logo" href="<?php echo home_url(); ?>">
-                    <img class="img" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/logo.png'; ?>" alt="zimne-rzeczy" />
+                    <img class="img" src="<?php echo get_field('logo_w_stopce', 146); ?>" alt="zimne-rzeczy" />
                 </a>
                 <h4 class="footer__main__header">
                     Blog Zimne rzeczy
@@ -363,7 +206,12 @@ function jurkiewicz_footer() {
                     </h4>
                     <ul>
                         <?php
-                        foreach ( get_categories() as $category ) :
+                        $cats = get_terms('category', array(
+                            'fields' => 'all',
+                            'exclude' => '1',
+                            'hide_empty' => false,
+                        ));
+                        foreach ( $cats as $category ) :
                             ?>
                             <li>
                                 <a href="<?php echo home_url() . '/blog?kategoria=' . $category->slug; ?>">
@@ -415,16 +263,16 @@ function jurkiewicz_footer() {
                     <h4 class="footer__main__header">
                         Obsługa Klienta:
                     </h4>
-                    <a>
+                    <a href="tel:+48<?php echo str_replace(' ',  '', get_field('numer_telefonu', 146)); ?>">
                         <img class="icon" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/phone.svg'; ?>" alt="telefon" />
-                        100 200 300
+                        <?php echo get_field('numer_telefonu', 146); ?>
                     </a>
                     <h4 class="footer__main__header">
                         Mail kontaktowy:
                     </h4>
-                    <a>
+                    <a href="mailto:<?php echo get_field('adres_email', 146); ?>">
                         <img class="icon" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/mail.svg'; ?>" alt="telefon" />
-                        kontakt@zimnerzeczy.pl
+                        <?php echo get_field('adres_email', 146); ?>
                     </a>
                 </section>
             </section>
@@ -473,9 +321,7 @@ function zimnerzeczy_single_post() {
                         O autorach
                     </h4>
                     <p class="single__aside__text">
-                        Dwóch przyjaciół. Dwie historie. Dwa podejścia do zimna.
-                        Połączyliśmy swoje siły, by badać i opisywać wpływ zimna na ciało i umysł człowieka.
-                        Stworzyliśmy tego bloga, by dzielić się wiedzą, która ma realny wpływ na pozytywne zmiany, które zachodzą w nas samych i społeczności, którą mamy wokół siebie.
+                        <?php echo get_field('o_autorach', 146); ?>
                     </p>
                     <h4 class="single__aside__header">
                         Ostatnie wpisy
@@ -576,6 +422,143 @@ function zimnerzeczy_single_post() {
 add_action('storefront_single_post', 'zimnerzeczy_single_post', 14);
 
 function zimnerzeczy_after_single_product_summary() {
+    global $product;
+
+    $first_img = get_field('co_wyroznia_nasz_produkt_-_zdjecie_1');
+    $second_img = get_field('co_wyroznia_nasz_produkt_-_zdjecie_2');
+    $third_img = get_field('co_wyroznia_nasz_produkt_-_zdjecie_3');
+    $fourth_img = get_field('co_wyroznia_nasz_produkt_-_zdjecie_4');
+    $images = array($first_img, $second_img, $third_img, $fourth_img);
+
+    $header1 = get_field('co_wyroznia_nasz_produkt_-_naglowek_1');
+    $header2 = get_field('co_wyroznia_nasz_produkt_-_naglowek_2');
+    $header3 = get_field('co_wyroznia_nasz_produkt_-_naglowek_3');
+    $header4 = get_field('co_wyroznia_nasz_produkt_-_naglowek_4');
+    $headers = array($header1, $header2, $header3, $header4);
+
+    $text1 = get_field('co_wyroznia_nasz_produkt_-_tekst_pod_naglowkiem_1');
+    $text2 = get_field('co_wyroznia_nasz_produkt_-_tekst_pod_naglowkiem_2');
+    $text3 = get_field('co_wyroznia_nasz_produkt_-_tekst_pod_naglowkiem_3');
+    $text4 = get_field('co_wyroznia_nasz_produkt_-_tekst_pod_naglowkiem_4');
+    $texts = array($text1, $text2, $text3, $text4);
+
+    $i = 0;
+
+    if($header1 || $header2 || $header3 || $header4) {
+        ?>
+        <div class="product__icons">
+        <h3 class="product__icons__mainHeader">
+            Co wyróżnia nasz produkt?
+        </h3>
+        <div class="product__icons__inner">
+            <?php
+
+            foreach($images as $img) {
+                if($img) {
+                    ?>
+
+                    <div class="product__icons__section">
+                        <figure>
+                            <img class="img" src="<?php echo $img; ?>" alt="icon" />
+                        </figure>
+                        <h4 class="product__icons__header">
+                            <?php
+                            echo $headers[$i];
+                            ?>
+                        </h4>
+                        <p class="product__icons__text">
+                            <?php
+                            echo $texts[$i];
+                            ?>
+                        </p>
+                    </div>
+
+                    <?php
+                }
+                $i++;
+            }
+            ?>
+        </div>
+        <?php
+    }
+    ?>
+
+    </div>
+
+    <div class="productDescription">
+        <h3 class="productDescription__header">
+            Opis produktu
+        </h3>
+        <?php
+        echo the_content();
+        ?>
+    </div>
+
+    <?php
+    if(get_field( 'informacja_zywieniowa' )) {
+        ?>
+
+        <div class="productDescription">
+            <h3 class="productDescription__header productDescription__header--marginTop">
+                <?php
+                echo __( 'Informacja żywieniowa', 'my-plugin-domain' );
+                ?>
+            </h3>
+            <?php
+            $table = get_field( 'informacja_zywieniowa' );
+
+            if ( ! empty ( $table ) ) {
+
+                echo '<table border="0">';
+
+                if ( ! empty( $table['caption'] ) ) {
+
+                    echo '<caption>' . $table['caption'] . '</caption>';
+                }
+
+                if ( ! empty( $table['header'] ) ) {
+
+                    echo '<thead>';
+
+                    echo '<tr>';
+
+                    foreach ( $table['header'] as $th ) {
+
+                        echo '<th>';
+                        echo $th['c'];
+                        echo '</th>';
+                    }
+
+                    echo '</tr>';
+
+                    echo '</thead>';
+                }
+
+                echo '<tbody>';
+
+                foreach ( $table['body'] as $tr ) {
+
+                    echo '<tr>';
+
+                    foreach ( $tr as $td ) {
+
+                        echo '<td>';
+                        echo $td['c'];
+                        echo '</td>';
+                    }
+
+                    echo '</tr>';
+                }
+
+                echo '</tbody>';
+
+                echo '</table>';
+            }
+            ?>
+        </div>
+        <?php
+    }
+
     ?>
         <section class="single__blogSection flex">
             <h3 class="single__blogSection__header">
@@ -644,3 +627,42 @@ function zimnerzeczy_after_single_product_summary() {
 }
 
 add_action('woocommerce_after_single_product_summary', 'zimnerzeczy_after_single_product_summary');
+
+function metahuman_product_meta_start() {
+
+    global $product;
+
+    if(get_field('cechy_produktu')) {
+
+        ?>
+
+        <div class="productDescription">
+            <h3 class="productDescription__header productDescription__header--small">
+                <?php
+                echo __( 'Cechy produktu', 'my-plugin-domain' );
+                ?>
+            </h3>
+            <?php
+            $points = explode("-", get_field('cechy_produktu'));
+
+            foreach($points as $point) {
+                if($point != "") {
+                    ?>
+                    <p class="productDescription__point">
+                        <img class="img" src="https://metahuman.pl/wp-content/uploads/2022/05/check-mark.svg" alt="cecha" />
+                        <?php
+                        echo $point;
+                        ?>
+                    </p>
+
+                    <?php
+                }
+            }
+            ?>
+        </div>
+
+        <?php
+    }
+}
+
+add_action('woocommerce_product_meta_start', 'metahuman_product_meta_start');

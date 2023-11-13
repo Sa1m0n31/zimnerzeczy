@@ -36,15 +36,26 @@ const allCategoriesButtons = Array.from(document.querySelectorAll('.blog__catego
 const filterCategories = (cat, all = false) => {
     if(all) {
         allPosts.forEach((item, index) => {
-            item.style.display = 'block';
+            if(index <= 5) {
+				item.style.display = 'block';
+			}
+			else {
+				item.classList.add('hidden');
+				item.classList.add('h-0');
+			}
         });
     }
     else {
+		console.log(allPosts);
         const numOfPosts = allPosts.map((item, index) => {
             item.style.opacity = '0';
+			item.classList.remove('hidden');
+			item.classList.remove('h-0');
+			
             const postCategories = allPostsCategories[index].getAttribute('id').split(';').map((item) => {
                 return convertToURL(item);
             });
+			console.log(postCategories);
             setTimeout(() => {
                 item.style.opacity = '1';
             }, 300);
@@ -57,6 +68,7 @@ const filterCategories = (cat, all = false) => {
                 return 0;
             }
         });
+			
         if(numOfPosts.findIndex((item) => { return item === 1; }) === -1) {
 
         }

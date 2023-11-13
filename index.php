@@ -42,6 +42,11 @@ get_header(); ?>
                                 </a>
                             </li>
                             <li>
+                                <a href="/moje-konto">
+                                    Panel klienta
+                                </a>
+                            </li>
+                            <li>
                                 <a href="/sklep">
                                     Sklep
                                 </a>
@@ -49,10 +54,10 @@ get_header(); ?>
                         </ul>
                     </menu>
 
-                    <img class="hero__background" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/zimnerzeczy-landing-page.png'; ?>" alt="zimne-rzeczy" />
+                    <img class="hero__background" src="<?php echo get_field('glowne_zdjecie', 146); ?>" alt="zimne-rzeczy" />
                     <header class="hero__header flex w">
                         <a class="hero__logoWrapper" href="">
-                            <img class="img" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/logo.png'; ?>" alt="logo" />
+                            <img class="img" src="<?php echo get_field('logo', 146); ?>" alt="logo" />
                         </a>
                         <button class="hero__hamburgerMenu d-mobile" onclick="openMenu()">
                             <img class="img" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/menu.svg'; ?>" alt="menu" />
@@ -75,6 +80,11 @@ get_header(); ?>
                                     </a>
                                 </li>
                                 <li>
+                                    <a href="/moje-konto">
+                                        Panel klienta
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="/sklep" class="menu__shop">
                                         Sklep morsa
                                         <img class="cartIcon invert" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/cart.svg'; ?>" alt="koszyk" />
@@ -88,10 +98,10 @@ get_header(); ?>
                     </header>
                     <main class="hero__main">
                         <h2 class="hero__main__header">
-                            Dom miłośników zimna
+                            <?php echo get_field('pierwszy_naglowek', 146); ?>
                         </h2>
                         <h3 class="hero__main__subheader">
-                            Praktyczne wskazówki, dzięki którym zahartujesz swojego ducha i ciało
+                            <?php echo get_field('drugi_naglowek', 146); ?>
                         </h3>
                         <a class="hero__btn" href="#blog">
                             Idź dalej
@@ -106,7 +116,12 @@ get_header(); ?>
                                 Wszystkie wpisy
                             </button>
                             <?php
-                            foreach ( get_categories() as $category ) :
+                            $cats = get_terms('category', array(
+                                'fields' => 'all',
+                                'exclude' => '1',
+                                'hide_empty' => false,
+                            ));
+                            foreach ( $cats as $category ) :
                                 ?>
                                 <button class="blog__categories__btn" id="<?php echo $category->name; ?>">
                                     <?php
@@ -136,7 +151,7 @@ get_header(); ?>
                                     $category_object = get_the_category($post_id);
                                     $category_name = $category_object[0]->name;
                                     $i++;
-                                    if($i <= 9) {
+                                    if($i <= 6) {
                                         ?>
                                         <a class="blog__articles__item" href="<?php the_permalink() ?>">
                             <span class="blog__articles__item__category" id="<?php
@@ -168,8 +183,12 @@ get_header(); ?>
                                     }
                                     else {
                                         ?>
-                                        <a class="blog__articles__item hidden" href="<?php the_permalink() ?>">
-                            <span class="blog__articles__item__category">
+                                        <a class="blog__articles__item hidden h-0" href="<?php the_permalink() ?>">
+                            <span class="blog__articles__item__category" id="<?php
+                            foreach($category_object as $cat) {
+                                echo $cat->name . ';';
+                            }
+                            ?>">
                                 <?php echo $category_name; ?>
                             </span>
                                             <figure class="blog__articles__imgWrapper">
@@ -195,6 +214,13 @@ get_header(); ?>
                                     }
                                 }
                             }
+                            else {
+                                ?>
+                                <h3 class="notFound">
+                                    Nic nie znaleziono
+                                </h3>
+                                <?php
+                            }
                             ?>
                         </main>
 
@@ -205,15 +231,10 @@ get_header(); ?>
                         <section class="blog__bottom flex">
                             <article class="blog__bottom__article">
                                 <h2 class="blog__bottom__article__header">
-                                    O nas
+                                    <?php echo get_field('naglowek_o_nas', 146); ?>
                                 </h2>
                                 <p class="blog__bottom__article__text">
-                                    Dwóch przyjaciół. Dwie historie. Dwa podejścia do zimna.
-                                    Połączyliśmy swoje siły, by badać i opisywać wpływ zimna na ciało i umysł człowieka.
-                                    Stworzyliśmy tego bloga, by dzielić się wiedzą, która ma realny wpływ na pozytywne zmiany, które zachodzą w nas samych i społeczności, którą mamy wokół siebie.
-                                    Jeden z nas to specjalista do spraw suplementacji i chemii mózgu. Dietetyk kliniczny, absolwent Functional Medical University FMU. Popularyzator nauki, od lat zajmuje się hobbistycznie endokrynologią i zastosowaniem peptydów w medycynie regeneracyjnej.
-                                    Drugi to przedsiębiorca, wieloletni miłośnik zimna i pasjonat zdobywania górskich szczytów w samych szortach. Coach, organizator warsztatów, popularyzator dobrych nawyków w morsowaniu.
-                                    Zapraszamy Cię we wspólną podróż po wiedzę i rozwój ducha.
+                                    <?php echo get_field('tekst_o_nas', 146); ?>
                                 </p>
                                 <a class="blog__bottom__article__btn" href="/blog">
                                     Przejdź do naszego bloga
@@ -221,7 +242,7 @@ get_header(); ?>
                                 </a>
                             </article>
                             <figure class="blog__bottom__imgWrapper">
-                                <img class="img" src="<?php echo get_bloginfo('stylesheet_directory') . '/img/img2.png'; ?>" alt="blog" />
+                                <img class="img" src="<?php echo get_field('zdjecie_o_nas', 146); ?>" alt="blog" />
                             </figure>
                         </section>
                     </section>
@@ -229,13 +250,13 @@ get_header(); ?>
 
                 <section class="instagram">
                     <h3 class="instagram__header">
-                        Wpadnij na naszego Instagrama
+                        <?php echo get_field('instagram_-_naglowek', 146); ?>
                     </h3>
                     <h4 class="instagram__subheader">
-                        @zimnerzeczy
+                        <?php echo get_field('instagram_-_nazwa_konta', 146); ?>
                     </h4>
                     <?php
-                        echo do_shortcode('[instagram-feed]');
+                        echo do_shortcode('[instagram-feed feed=2]');
                     ?>
                 </section>
             </div>

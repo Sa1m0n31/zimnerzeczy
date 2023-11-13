@@ -10,7 +10,12 @@ get_header();
                     Wszystkie wpisy
                 </button>
                 <?php
-                foreach ( get_categories() as $category ) :
+                $cats = get_terms('category', array(
+                    'fields' => 'all',
+                    'exclude' => '1',
+                    'hide_empty' => false
+                ));
+                foreach ( $cats as $category ) :
                     ?>
                     <button class="blog__categories__btn" id="<?php echo $category->name; ?>">
                         <?php
@@ -24,9 +29,6 @@ get_header();
             <h2 class="blog__mobileHeader d-mobile">
                 Ostatnie wpisy
             </h2>
-<!--            <h3 class="notFound">-->
-<!--                Nic nie znaleziono-->
-<!--            </h3>-->
             <main class="blog__articles blog__articles--blog">
                 <?php
                 $args = array(
@@ -70,6 +72,14 @@ get_header();
                         </a>
                         <?php
                     }
+                }
+                else {
+                    ?>
+                        <h3 class="notFound">
+                            Nic nie znaleziono
+                        </h3>
+
+                <?php
                 }
                 ?>
             </main>
